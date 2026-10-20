@@ -2,12 +2,12 @@
 add_newline = false
 
 format = """
-[╭](blue)\
-[](blue)\
-[  ](bg:blue fg:white)\
-[](bg:surface0 fg:blue)\
+[╭](accent)\
+[](accent)\
+[  ](bg:accent fg:bright_foreground)\
+[](bg:lighter_background fg:accent)\
 $directory\
-[](fg:surface0 bg:mantle)\
+[](fg:lighter_background bg:dark_background)\
 $git_branch\
 $git_commit\
 $git_status\
@@ -19,7 +19,7 @@ $python\
 $openstack\
 $kubernetes\
 $time\
-[](mantle)\
+[](dark_background)\
 \n$character"""
 
 palette = 'omarchy'
@@ -27,124 +27,119 @@ palette = 'omarchy'
 continuation_prompt = '☞ '
 
 [directory]
-style = "fg:blue bg:surface0"
+style = "fg:accent bg:lighter_background"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
 
 [git_branch]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol $branch ](fg:peach bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol $branch ](fg:orange bg:dark_background)]($style)'
 
 [git_status]
-style = "fg:overlay2 bg:mantle"
-up_to_date = '[✓](fg:green bg:mantle)'
-diverged   = '[[[[󱡷 ](fg:sapphire bg:mantle)$ahead_count](fg:green bg:mantle)󰇙](fg:sapphire bg:mantle)$behind_count](fg:maroon bg:mantle)'
-conflicted = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:maroon bg:mantle)'
-ahead      = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:peach bg:mantle)'
-behind     = '[[⋮](fg:sapphire bg:mantle)󰍷 \($count\)](fg:peach bg:mantle)'
-stashed    = '[[⋮](fg:sapphire bg:mantle)󱥦 \($count\)](fg:peach bg:mantle)'
-renamed    = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:peach bg:mantle)'
-untracked  = '[[⋮](fg:sapphire bg:mantle)󱔢 \($count\)](fg:pink bg:mantle)'
-modified   = '[[⋮](fg:sapphire bg:mantle)󰲶 \($count\)](fg:peach bg:mantle)'
-staged     = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:green bg:mantle)'
-deleted    = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:red bg:mantle)'
-format = '[[($all_status$ahead_behind )](fg:sapphire bg:mantle)]($style)'
+style = "fg:muted bg:dark_background"
+up_to_date = '[✓](fg:green bg:dark_background)'
+diverged   = '[[[[󱡷 ](fg:bright_blue bg:dark_background)$ahead_count](fg:green bg:dark_background)󰇙](fg:bright_blue bg:dark_background)$behind_count](fg:bright_red bg:dark_background)'
+conflicted = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:bright_red bg:dark_background)'
+ahead      = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:orange bg:dark_background)'
+behind     = '[[⋮](fg:bright_blue bg:dark_background)󰍷 \($count\)](fg:orange bg:dark_background)'
+stashed    = '[[⋮](fg:bright_blue bg:dark_background)󱥦 \($count\)](fg:orange bg:dark_background)'
+renamed    = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:orange bg:dark_background)'
+untracked  = '[[⋮](fg:bright_blue bg:dark_background)󱔢 \($count\)](fg:bright_magenta bg:dark_background)'
+modified   = '[[⋮](fg:bright_blue bg:dark_background)󰲶 \($count\)](fg:orange bg:dark_background)'
+staged     = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:green bg:dark_background)'
+deleted    = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:red bg:dark_background)'
+format = '[[($all_status$ahead_behind )](fg:bright_blue bg:dark_background)]($style)'
 
 [git_commit]
-style = "fg:overlay2 bg:mantle"
+style = "fg:muted bg:dark_background"
 tag_disabled = false
-tag_symbol = '  '
-format = '[[\($hash$tag\) ](fg:peach bg:mantle)]($style)'
+tag_symbol = '  '
+format = '[[\($hash$tag\) ](fg:orange bg:dark_background)]($style)'
 
 [nodejs]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [rust]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [golang]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [php]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [python]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [openstack]
-symbol = ""
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($cloud) ](fg:mauve bg:mantle)]($style)'
+symbol = ""
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($cloud) ](fg:purple bg:dark_background)]($style)'
 
 [kubernetes]
 symbol = "☸"
-style = "fg:overlay2 bg:mantle"
-format = '[[ $symbol ($context) ](fg:mauve bg:mantle)]($style)'
+style = "fg:muted bg:dark_background"
+format = '[[ $symbol ($context) ](fg:purple bg:dark_background)]($style)'
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "fg:overlay2 bg:mantle"
-format = '[[  $time ](fg:sky bg:mantle)]($style)'
+style = "fg:muted bg:dark_background"
+format = '[[  $time ](fg:cyan bg:dark_background)]($style)'
 
 [character]
-success_symbol            = '[╰☞° ͜ °☞](blue)'
+success_symbol            = '[╰☞° ͜ °☞](accent)'
 error_symbol              = "[╰╯°□°╯︵┻━┻](red)"
-vimcmd_symbol             = "[╰ง ͠° ͜ʖ ͡°ง](peach)"
-vimcmd_replace_one_symbol = "[╰ง ͠° ͜ʖ ͡°ง](pink)"
+vimcmd_symbol             = "[╰ง ͠° ͜ʖ ͡°ง](orange)"
+vimcmd_replace_one_symbol = "[╰ง ͠° ͜ʖ ͡°ง](bright_magenta)"
 vimcmd_replace_symbol     = "[╰ง ͠° ͜ʖ ͡°ง](yellow)"
 vimcmd_visual_symbol      = "[╰ง ͠° ͜ʖ ͡°ง](green)"
 
 [battery]
 disabled = true
 
-# [directory]
-# truncation_length = 100
-#
-# Rendered by Omarchy (omarchy theme set) from the current theme's
-# colors.toml. This file is a template: symlink it into
-# ~/.config/omarchy/themed/starship.toml.tpl and point ~/.config/starship.toml
-# at ~/.local/state/omarchy/current/theme/starship.toml.
+# Generic Omarchy palette. install.sh drops this template into
+# ~/.config/omarchy/themed/; every `omarchy theme set` renders the palette
+# from the active theme's colors.toml into
+# ~/.local/state/omarchy/current/theme/starship.toml.
 [palettes.omarchy]
 # Status colors
 red = "{{ red }}"
-maroon = "{{ bright_red }}"
+bright_red = "{{ bright_red }}"
 green = "{{ green }}"
 yellow = "{{ yellow }}"
-peach = "{{ orange }}"
-pink = "{{ bright_magenta }}"
+orange = "{{ orange }}"
+bright_magenta = "{{ bright_magenta }}"
 
 # Accents
-blue = "{{ accent }}"
-white = "{{ bright_foreground }}"
-lavender = "{{ bright_blue }}"
-sapphire = "{{ bright_blue }}"
-mauve = "{{ purple }}"
-sky = "{{ cyan }}"
-teal = "{{ bright_cyan }}"
+accent = "{{ accent }}"
+bright_foreground = "{{ bright_foreground }}"
+bright_blue = "{{ bright_blue }}"
+purple = "{{ purple }}"
+cyan = "{{ cyan }}"
 
 # Foregrounds / surfaces
-text = "{{ foreground }}"
-overlay2 = "{{ muted }}"
-surface0 = "{{ lighter_background }}"
-base = "{{ background }}"
-mantle = "{{ dark_background }}"
-crust = "{{ darker_background }}"
+foreground = "{{ foreground }}"
+muted = "{{ muted }}"
+lighter_background = "{{ lighter_background }}"
+background = "{{ background }}"
+dark_background = "{{ dark_background }}"
+darker_background = "{{ darker_background }}"

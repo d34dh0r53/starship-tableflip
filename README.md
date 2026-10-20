@@ -13,6 +13,11 @@ where Omarchy renders its `{{ color }}` palette tokens from the active theme's
 whenever you switch themes. `~/.config/starship.toml` points at the rendered
 output in `~/.local/state/omarchy/current/theme/starship.toml`.
 
+Styles reference the generic palette names (`fg:accent`, `bg:dark_background`,
+`fg:muted`, ...) rather than any one theme's color names, so the config works
+with every Omarchy theme and the palette section doubles as an overview of the
+tokens you can use while tweaking.
+
 ## Requirements
 
 - [Omarchy](https://omarchy.org) (ships starship and a Nerd Font by default)
