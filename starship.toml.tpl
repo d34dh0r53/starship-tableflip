@@ -3,11 +3,11 @@ add_newline = false
 
 format = """
 [╭](accent)\
-[](accent)\
-[  ](bg:accent fg:bright_foreground)\
-[](bg:lighter_background fg:accent)\
+[](accent)\
+[  ](bg:accent fg:bright_foreground)\
+[](bg:lighter_background fg:accent)\
 $directory\
-[](fg:lighter_background bg:dark_background)\
+[](fg:lighter_background bg:dark_background)\
 $git_branch\
 $git_commit\
 $git_status\
@@ -19,7 +19,7 @@ $python\
 $openstack\
 $kubernetes\
 $time\
-[](dark_background)\
+[](dark_background)\
 \n$character"""
 
 palette = 'omarchy'
@@ -34,12 +34,12 @@ truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
 
 [git_branch]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol $branch ](fg:orange bg:dark_background)]($style)'
 
@@ -48,7 +48,7 @@ style = "fg:muted bg:dark_background"
 up_to_date = '[✓](fg:green bg:dark_background)'
 diverged   = '[[[[󱡷 ](fg:bright_blue bg:dark_background)$ahead_count](fg:green bg:dark_background)󰇙](fg:bright_blue bg:dark_background)$behind_count](fg:bright_red bg:dark_background)'
 conflicted = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:bright_red bg:dark_background)'
-ahead      = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:orange bg:dark_background)'
+ahead      = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:orange bg:dark_background)'
 behind     = '[[⋮](fg:bright_blue bg:dark_background)󰍷 \($count\)](fg:orange bg:dark_background)'
 stashed    = '[[⋮](fg:bright_blue bg:dark_background)󱥦 \($count\)](fg:orange bg:dark_background)'
 renamed    = '[[⋮](fg:bright_blue bg:dark_background) \($count\)](fg:orange bg:dark_background)'
@@ -61,36 +61,36 @@ format = '[[($all_status$ahead_behind )](fg:bright_blue bg:dark_background)]($st
 [git_commit]
 style = "fg:muted bg:dark_background"
 tag_disabled = false
-tag_symbol = '  '
+tag_symbol = '  '
 format = '[[\($hash$tag\) ](fg:orange bg:dark_background)]($style)'
 
 [nodejs]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [rust]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [golang]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [php]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [python]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol ($version) ](fg:bright_blue bg:dark_background)]($style)'
 
 [openstack]
-symbol = ""
+symbol = ""
 style = "fg:muted bg:dark_background"
 format = '[[ $symbol ($cloud) ](fg:purple bg:dark_background)]($style)'
 
