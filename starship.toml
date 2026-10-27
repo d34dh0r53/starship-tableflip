@@ -1,0 +1,148 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+
+format = """
+[╭](blue)\
+[](blue)\
+[  ](bg:blue fg:crust)\
+[](bg:surface0 fg:blue)\
+$directory\
+[](fg:surface0 bg:mantle)\
+$git_branch\
+$git_commit\
+$git_status\
+$nodejs\
+$rust\
+$golang\
+$php\
+$python\
+$openstack\
+$kubernetes\
+$time\
+[](mantle)\
+\n$character"""
+
+palette = 'catppuccin_macchiato'
+
+continuation_prompt = '☞ '
+
+[directory]
+style = "fg:blue bg:surface0"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol $branch ](fg:peach bg:mantle)]($style)'
+
+[git_status]
+style = "fg:overlay2 bg:mantle"
+up_to_date = '[✓](fg:green bg:mantle)'
+diverged   = '[[[[󱡷 ](fg:sapphire bg:mantle)$ahead_count](fg:green bg:mantle)󰇙](fg:sapphire bg:mantle)$behind_count](fg:maroon bg:mantle)'
+conflicted = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:maroon bg:mantle)'
+ahead      = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:peach bg:mantle)'
+behind     = '[[⋮](fg:sapphire bg:mantle)󰍷 \($count\)](fg:peach bg:mantle)'
+stashed    = '[[⋮](fg:sapphire bg:mantle)󱥦 \($count\)](fg:peach bg:mantle)'
+renamed    = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:peach bg:mantle)'
+untracked  = '[[⋮](fg:sapphire bg:mantle)󱔢 \($count\)](fg:pink bg:mantle)'
+modified   = '[[⋮](fg:sapphire bg:mantle)󰲶 \($count\)](fg:peach bg:mantle)'
+staged     = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:green bg:mantle)'
+deleted    = '[[⋮](fg:sapphire bg:mantle) \($count\)](fg:red bg:mantle)'
+format = '[[($all_status$ahead_behind )](fg:sapphire bg:mantle)]($style)'
+
+[git_commit]
+style = "fg:overlay2 bg:mantle"
+tag_disabled = false
+tag_symbol = '  '
+format = '[[\($hash$tag\) ](fg:peach bg:mantle)]($style)'
+
+[nodejs]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+
+[rust]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+
+[golang]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+
+[php]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+
+[python]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($version) ](fg:lavender bg:mantle)]($style)'
+
+[openstack]
+symbol = ""
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($cloud) ](fg:mauve bg:mantle)]($style)'
+
+[kubernetes]
+symbol = "☸"
+style = "fg:overlay2 bg:mantle"
+format = '[[ $symbol ($context) ](fg:mauve bg:mantle)]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "fg:overlay2 bg:mantle"
+format = '[[  $time ](fg:sky bg:mantle)]($style)'
+
+[character]
+success_symbol            = '[╰☞° ͜ °☞](blue)'
+error_symbol              = "[╰╯°□°╯︵┻━┻](red)"
+vimcmd_symbol             = "[╰ง ͠° ͜ʖ ͡°ง](peach)"
+vimcmd_replace_one_symbol = "[╰ง ͠° ͜ʖ ͡°ง](pink)"
+vimcmd_replace_symbol     = "[╰ง ͠° ͜ʖ ͡°ง](yellow)"
+vimcmd_visual_symbol      = "[╰ง ͠° ͜ʖ ͡°ง](green)"
+
+[battery]
+disabled = true
+
+# [directory]
+# truncation_length = 100
+#
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
