@@ -1,6 +1,6 @@
 # starship-tableflip
 
-My (╯°□°）╯︵┻━┻ prompt for [starship](https://starship.rs), themed live by [Omarchy](https://omarchy.org).
+My (╯°□°）╯︵┻━┻ prompt for [starship](https://starship.rs), themed live by [Omarchy](https://omarchy.org) — or symlinked straight from the repo on any other system.
 
 ![Tableflip Screenshot](images/starship-tableflip.png)
 
@@ -18,9 +18,14 @@ Styles reference the generic palette names (`fg:accent`, `bg:dark_background`,
 with every Omarchy theme and the palette section doubles as an overview of the
 tokens you can use while tweaking.
 
+On non-Omarchy systems, `~/.config/starship.toml` is simply symlinked to the
+repo's `starship.toml`, so `git pull` updates the prompt (no live theming).
+
 ## Requirements
 
-- [Omarchy](https://omarchy.org) (ships starship and a Nerd Font by default)
+- [starship](https://starship.rs)
+- a [Nerd Font](https://www.nerdfonts.com) for the prompt's icons/symbols
+- [Omarchy](https://omarchy.org) (ships starship and a Nerd Font by default) — optional
 
 ## Install
 
@@ -33,9 +38,12 @@ cd starship-tableflip
 `install.sh`:
 
 - backs up your existing `~/.config/starship.toml` (as `starship.toml.bak.<epoch>`)
-- links `starship.toml.tpl` into `~/.config/omarchy/themed/` (use `./install.sh --copy` to copy instead)
-- links `~/.config/starship.toml` to the rendered theme output
-- runs `omarchy theme refresh` so it applies immediately
+- on **Omarchy**:
+  - links `starship.toml.tpl` into `~/.config/omarchy/themed/` (use `./install.sh --copy` to copy instead)
+  - links `~/.config/starship.toml` to the rendered theme output
+  - runs `omarchy theme refresh` so it applies immediately
+- on **other systems**:
+  - links `~/.config/starship.toml` to this repo's `starship.toml`
 
 ## Update
 
@@ -43,9 +51,9 @@ cd starship-tableflip
 git pull && ./install.sh
 ```
 
-With the default symlink install, template changes apply on the next
+On Omarchy with the default symlink install, template changes apply on the next
 `omarchy theme set` (or `omarchy theme refresh`); a `--copy` install needs the
-re-run of `install.sh`.
+re-run of `install.sh`. On other systems `git pull` alone is enough.
 
 ## Uninstall
 
@@ -54,5 +62,8 @@ re-run of `install.sh`.
 ```
 
 Removes the template and the `~/.config/starship.toml` link, then restores the
-stock Omarchy prompt via `omarchy refresh config starship.toml`. Install-time
-backups are left in `~/.config/` if you want your old config back instead.
+stock Omarchy prompt via `omarchy refresh config starship.toml`. On other
+systems it removes the symlink and restores the newest install-time backup
+(`starship.toml.bak.<epoch>` in `~/.config/`) if there was a previous config.
+Install-time backups are left in `~/.config/` if you want your old config back
+instead.

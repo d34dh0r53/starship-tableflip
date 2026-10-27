@@ -8,6 +8,12 @@
 #      ~/.local/state/omarchy/current/theme/starship.toml.
 #   3. Re-renders the current theme so the prompt applies immediately.
 #
+# On non-Omarchy systems it takes a simpler path:
+#
+#   1. Backs up any existing ~/.config/starship.toml.
+#   2. Symlinks ~/.config/starship.toml at the repo's starship.toml
+#      (git pull therefore updates the prompt).
+#
 # Existing files are backed up as <path>.bak.<epoch> before being replaced.
 #
 # Usage: ./install.sh [--copy]
@@ -43,8 +49,9 @@ case "${1:-}" in
   *) fail "unknown option: $1" ;;
 esac
 
-command -v omarchy >/dev/null 2>&1 || fail "omarchy not found on PATH; is this an Omarchy system?"
-[[ -f $TEMPLATE ]] || fail "template not found: $TEMPLATE"
+OMARCHY=true
+command -v omarchy >/dev/null 2>&1 || OMARCHY=false
+[[ -f $TEMPLATE ]] || [[ $OMARCHY == false ]] || fail "template not found: $TEMPLATE"
 
 backup() {
   local path="$1" dest
@@ -59,6 +66,26 @@ backup() {
     echo "Noted symlink $path -> $(readlink "$path") in $dest.link"
   fi
 }
+
+if [[ $OMARCHY == false ]]; then
+  # Non-Omarchy: back up any existing config and link the repo's starship.toml.
+  REPO_CONFIG="$REPO_DIR/starship.toml"
+  [[ -f $REPO_CONFIG ]] || fail "starship.toml not found: $REPO_CONFIG"
+  if [[ -L $STARSHIP_CONFIG && $(readlink "$STARSHIP_CONFIG") == "$REPO_CONFIG" ]]; then
+    echo "starship.toml already points at the repo."
+  else
+    backup "$STARSHIP_CONFIG"
+    ln -sfn "$REPO_CONFIG" "$STARSHIP_CONFIG"
+    echo "Linked $STARSHIP_CONFIG -> $REPO_CONFIG"
+  fi
+  cat <<DONE
+
+Done -- open a new terminal to see it. (╯°□°）╯︵┻━┻
+You're not on Omarchy, so the prompt is linked straight to the repo:
+\`git pull\` updates it, and uninstall.sh restores your old config.
+DONE
+  exit 0
+fi
 
 # 1. Template into Omarchy's user themed directory.
 mkdir -p "$(dirname "$TEMPLATE_DEST")"

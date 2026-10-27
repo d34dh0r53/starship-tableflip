@@ -7,6 +7,11 @@
 #   3. Restores the stock prompt with `omarchy refresh config starship.toml`
 #      (which keeps its own backup).
 #
+# On non-Omarchy systems it:
+#
+#   1. Removes the ~/.config/starship.toml link into the repo.
+#   2. Restores the newest backup made by install.sh, if any.
+#
 # Backups made by install.sh (<path>.bak.<epoch>) are left in place.
 
 set -euo pipefail
@@ -20,7 +25,29 @@ TEMPLATE_DEST="$CONFIG_HOME/omarchy/themed/starship.toml.tpl"
 STARSHIP_CONFIG="$CONFIG_HOME/starship.toml"
 RENDERED="$STATE_HOME/omarchy/current/theme/starship.toml"
 
-command -v omarchy >/dev/null 2>&1 || { echo "uninstall.sh: omarchy not found on PATH" >&2; exit 1; }
+OMARCHY=true
+command -v omarchy >/dev/null 2>&1 || OMARCHY=false
+
+if [[ $OMARCHY == false ]]; then
+  REPO_CONFIG="$REPO_DIR/starship.toml"
+  if [[ -L $STARSHIP_CONFIG && $(readlink "$STARSHIP_CONFIG") == "$REPO_CONFIG" ]]; then
+    rm "$STARSHIP_CONFIG"
+    echo "Removed $STARSHIP_CONFIG"
+  else
+    echo "Leaving $STARSHIP_CONFIG (not linked to starship-tableflip)"
+    exit 0
+  fi
+  # Restore the newest backup, if install.sh made one.
+  LATEST_BACKUP=$(ls -t "$STARSHIP_CONFIG.bak."* 2>/dev/null | head -n1 || true)
+  if [[ -n ${LATEST_BACKUP:-} && -f $LATEST_BACKUP ]]; then
+    mv "$LATEST_BACKUP" "$STARSHIP_CONFIG"
+    echo "Restored $STARSHIP_CONFIG from $LATEST_BACKUP"
+  else
+    echo "No backup found; left $STARSHIP_CONFIG absent (starship defaults apply)"
+  fi
+  echo "Done -- previous prompt restored. ┬──┬ ノ( ゜-゜ノ)"
+  exit 0
+fi
 
 # 1. Template. Only remove what install.sh put there.
 if [[ -L $TEMPLATE_DEST && $(readlink "$TEMPLATE_DEST") == "$REPO_DIR/starship.toml.tpl" ]]; then
